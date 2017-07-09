@@ -1,2 +1,51 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<header>
+
+<div class="logo">
+<%= image_tag 'images.png' %>
+</div>
+
+<nav>
+
+<ul>
+<li> Users </li>
+<li><%= link_to "Sign Out",destroy_user_session_path,method: :delete %></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<aside>
+
+</aside>
+
+<section>
+
+<div class="createTweet">
+<%= form_for @tweet do |f| %>
+
+<%= f.label :content %>
+<%= f.text_area :content %><br>
+
+<div class="actions">
+<%= f.submit id: 'create_tweet_submit' %>
+<span id="characters"> 0 </span>
+</div>
+
+<% end %>
+
+<% if @tweet.errors.any? %>
+ 	
+ 	<% @tweet.errors.full_messages.each do |message| %>
+
+<script type="text/javascript">
+noty({text: '<%= message %>',type: 'error'});
+</script>
+
+	<% end %>
+
+<% end %>
+
+</div>
+</section>	
+</main>
